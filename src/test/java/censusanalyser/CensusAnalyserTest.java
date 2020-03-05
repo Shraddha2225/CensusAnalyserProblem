@@ -5,13 +5,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.IOException;
+
 public class CensusAnalyserTest {
 
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private static final String INDIAN_STATE_CSV_FILE_PATH = "./src/test/resources/IndiaStateCode.csv";
     private static final String WRONG_DELIMITER_CSV_FILE_PATH = "./src/test/resources/delimeterException.csv";
-    private static final String US_CENSUS_CSV_FILE_PATH = "./src/test/resources/USCensusData.csv";
+    private static final String US_CENSUS_CSV_FILE_PATH ="./src/test/resources/USCensusData.csv";
+
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -58,9 +61,12 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenUSCensusData_WhenSorted_ShouldReturnCorrectRecords(){
-        CensusAnalyser censusAnalyser = new CensusAnalyser();
-        int censusDataCount =censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
-        Assert.assertEquals(51,censusDataCount);
+    public void givenUsCensusData_ShouldReturnCorrectData() {
+
+         CensusAnalyser censusAnalyser = new CensusAnalyser();
+            int numOfRecords =  censusAnalyser.loadUsCensusData(US_CENSUS_CSV_FILE_PATH);
+            Assert.assertEquals(51,numOfRecords);
+
+
     }
 }
